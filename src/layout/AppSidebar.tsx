@@ -7,9 +7,9 @@ import {
   CalenderIcon,
   ChevronDownIcon,
   GridIcon,
-  HorizontaLDots,
+  /* HorizontaLDots,
   ListIcon,
-  PageIcon,
+  PageIcon, */
   PieChartIcon,
   PlugInIcon,
   TableIcon,
@@ -28,15 +28,16 @@ const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "Dashboard",
-    path: "/Ecommerce",
+    path: "/",
     // subItems: [{ name: "Ecommerce", path: "/", pro: false }],
   },
   {
     name: "List Data",
     icon: <TableIcon />,
     // path: "/list-data",
-    subItems: [{ name: "Danh Sách Cửa Hàng", path: "/list-data", pro: false },
-      { name: "Create Cửa Hàng", path: "/create-data", pro: false }
+    subItems: [
+      { name: "Danh Sách Cửa Hàng", path: "/list-data", pro: false },
+      { name: "Create Cửa Hàng", path: "/create-data", pro: false },
     ],
   },
   {
@@ -46,17 +47,15 @@ const navItems: NavItem[] = [
   },
   {
     icon: <UserCircleIcon />,
-    name: "Settings",
-    subItems: [{ name: "Info", path: "/user-info", pro: false },
-      { name: "Update Info", path: "/update-info", pro: false },
-    ]
+    name: "Users",
+    path: "/profile",
   },
   // {
   //   name: "Forms",
   //   icon: <ListIcon />,
   //   subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
   // },
- 
+
   // {
   //   name: "Pages",
   //   icon: <PageIcon />,
@@ -107,14 +106,14 @@ const AppSidebar: React.FC = () => {
     index: number;
   } | null>(null);
   const [subMenuHeight, setSubMenuHeight] = useState<Record<string, number>>(
-    {}
+    {},
   );
   const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   // const isActive = (path: string) => location.pathname === path;
   const isActive = useCallback(
     (path: string) => location.pathname === path,
-    [location.pathname]
+    [location.pathname],
   );
 
   useEffect(() => {
@@ -291,13 +290,13 @@ const AppSidebar: React.FC = () => {
 
   return (
     <aside
-      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
+      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200
         ${
           isExpanded || isMobileOpen
             ? "w-[290px]"
             : isHovered
-            ? "w-[290px]"
-            : "w-[90px]"
+              ? "w-[290px]"
+              : "w-[90px]"
         }
         ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0`}
